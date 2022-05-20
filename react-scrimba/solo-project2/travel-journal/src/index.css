@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+body{
+  font-family:'Inter','Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.nav-bar{
+  width: 100%;
+  height: 55px;
+  margin: 0;
+  padding: 0;
+  background: #F55A5A;
+  display: flex;
+  justify-content: center;
+}
+
+.globe{
+  width: 50px;
+  height: 45px;
+  align-self: center;
+  padding:1px ;
+}
+.nav--title{
+  font-weight: 500;
+  font-size: 14.4608px;
+  line-height: 18px;
+  letter-spacing: -0.075em;
+  color: #FFFFFF;
+  margin-top: 15px;
+}
+
+.cards-list{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 40px;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #F5F5F5;
+  height: 250px;
+}
+.card--location{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+}
+.location{
+  width: 45px;
+}
+.location--icon{
+  width: 20px;
+  height: 24px;
+  margin: 0 20px 0 20px;
+}
+
+.card--imageContainer{
+  align-items: center;
+  width: 130px;
+  height: 168px;
+}
+.card--image{
+  width: 100%;
+  height: 100%;
+  left: 40px;
+  top: 100px;
+  border-radius: 5px;
+}
+.card-location-title{
+  padding:0 20px 0 0;
+  font-weight: normal;
+  font-size: 10.24px;
+  line-height: 12px;
+  letter-spacing: 0.17em;
+}
+.card-location-link{
+  font-size: 10.24px;
+  line-height: 12px;
+  text-decoration-line: underline;
+  color: #918E9B;
+}
+.description{
+  height: 150px;
+}
+.location-name{
+  width: 326px;
+  height: 33px;
+  left: 184px;
+  top: 333px;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+  color: #2B283A;
+  padding-left: 25px;
+}
+.location-date{
+  width: 319px;
+  height: 11px;
+  left: 184px;
+  top: 380px;
+  font-weight: bold;
+  font-size: 10.24px;
+  line-height: 12px;
+  color: #2B283A;
+  padding-left: 25px;
+
+}
+.location-description{
+  width: 330px;
+  height: 60px;
+  left: 184px;
+  top: 400px;
+  padding: 0 0 0 25px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10.24px;
+  line-height: 150%;
+  color: #2B283A;
+}
