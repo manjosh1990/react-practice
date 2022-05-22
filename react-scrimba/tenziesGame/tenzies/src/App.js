@@ -20,9 +20,9 @@ export default function App() {
         if (allHeld && allSameValue) {
             setTenzies(true)
             console.log("Yay! you,ve won!")
-            setHighscore(rolls);
-            if (getHighScore() < highScore) {
+            if (getHighScore() ==0 || (getHighScore() >0 && getHighScore() > rolls)) {
                 localStorage.setItem("highScore", JSON.stringify(highScore));
+                setHighscore(rolls);
             }
         }
     }, [dice, highScore,rolls])
