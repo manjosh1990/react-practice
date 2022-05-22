@@ -6,18 +6,26 @@ import Confetti from 'react-confetti';
 export default function App() {
 
     const [tenzies, setTenzies] = useState(false);
-
     const [dice, setDice] = useState(allNewDice());
+    const [rolls, setRolls] = useState(0);
+    const [highScore, setHighscore] = useState(getHighScore());
 
+    function getHighScore() {
+        return localStorage.getItem("highScore") ? JSON.parse(localStorage.getItem("highScore")) : 0;
+    }
     useEffect(() => {
         const allHeld = dice.every(die => die.isHeld)
-        const firstValu = dice[0].value;
-        const allSameValue = dice.every(die => die.value === firstValu)
+        const firstValue = dice[0].value;
+        const allSameValue = dice.every(die => die.value === firstValue)
         if (allHeld && allSameValue) {
             setTenzies(true)
             console.log("Yay! you,ve won!")
+            setHighscore(rolls);
+            if (getHighScore() < highScore) {
+                localStorage.setItem("highScore", JSON.stringify(highScore));
+            }
         }
-    }, [dice])
+    }, [dice, highScore,rolls])
 
     function generateNewDie() {
         return {
@@ -41,9 +49,11 @@ export default function App() {
             setDice(oldDice => oldDice.map(die => {
                 return !die.isHeld ? generateNewDie() : die
             }))
+            setRolls(old => old + 1);
         } else {
             setDice(allNewDice);
             setTenzies(false);
+            setRolls(0);
         }
     }
 
@@ -78,6 +88,10 @@ export default function App() {
                 className="roll-dice"
             >{tenzies ? "New Game" : "Roll"}
             </button>
+            <div className="score">
+                <h3>Total Rolls: {rolls} </h3>
+                <h3>High Score: {highScore}</h3>
+            </div>
         </main>
     )
 }
