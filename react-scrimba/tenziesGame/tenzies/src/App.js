@@ -20,12 +20,12 @@ export default function App() {
         if (allHeld && allSameValue) {
             setTenzies(true)
             console.log("Yay! you,ve won!")
-            if (getHighScore() ==0 || (getHighScore() >0 && getHighScore() > rolls)) {
+            if (getHighScore() === 0 || (getHighScore() > 0 && getHighScore() > rolls)) {
                 localStorage.setItem("highScore", JSON.stringify(highScore));
                 setHighscore(rolls);
             }
         }
-    }, [dice, highScore,rolls])
+    }, [dice, highScore, rolls])
 
     function generateNewDie() {
         return {
@@ -57,8 +57,8 @@ export default function App() {
         }
     }
 
-    function holdDice(id) {
-        console.log(id)
+    function holdDice(id, value) {
+        //console.log(id + " value:" + value)
         //  let newArr = []
         //  newArr = dice.map(die => {
         //         if(die.id === id){
@@ -67,14 +67,21 @@ export default function App() {
         //         return die
         // }
         // )
-        // setDice(newArr)
-        setDice(oldDice => oldDice.map(die => {
-            return die.id === id ?
-                { ...die, isHeld: !die.isHeld } : die
-        }))
+        // setDice(newArr)      
+        // console.log(values)
+        const selectedDie = dice.find(die => {
+            return die.isHeld ? die.value : 0
+        })
+        // console.log(selectedDie)
+        if (!selectedDie || selectedDie.value === value) {
+            setDice(oldDice => oldDice.map(die => {
+                return die.id === id && die.value === value ?
+                    { ...die, isHeld: !die.isHeld } : die
+            }))
+        }
     }
 
-    const dieElements = dice.map(die => <Die key={die.id} value={die.value} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />)
+    const dieElements = dice.map(die => <Die key={die.id} value={die.value} isHeld={die.isHeld} holdDice={() => holdDice(die.id, die.value)} />)
     return (
         <main>
             {tenzies && <Confetti />}
