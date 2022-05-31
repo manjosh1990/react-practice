@@ -48,15 +48,21 @@ main {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
   cursor: pointer;
+  padding: 10px;
 }
 
 .die-num {
   font-size: 2rem;
 }
-
+.dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color:rgb(238, 12, 12);
+}
 .roll-dice {
   height: 50px;
   width: 150px;
@@ -81,4 +87,45 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.face-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.face-2{
+  display: flex;
+  justify-content: space-between;
+}
+
+.face-2 .dot:nth-of-type(2){
+  align-self: flex-end;
+}
+.face-3{
+  display: flex;
+  justify-content : space-between; 
+}
+.face-3 .dot:nth-of-type(2){
+  align-self: center;
+}
+
+.face-3 .dot:nth-of-type(3){
+  align-self: flex-end;
+}
+.face-4{
+  display: flex;
+  justify-content: space-between;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.column-5{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
