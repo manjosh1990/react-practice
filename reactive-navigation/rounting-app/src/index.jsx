@@ -8,10 +8,12 @@ import About from './pages/About';
 import Vans from './pages/vans/Vans';
 import VanDetail from './pages/vans/VanDetail';
 import Layout from './components/Layout';
-import Income from './components/Income';
-import Dashboard from './components/Dashboard';
-import Reviews from './components/Reviews';
+import Income from './pages/hosts/Income';
+import Dashboard from './pages/hosts/Dashboard';
+import Reviews from './pages/hosts//Reviews';
 import HostLayout from './components/HostLayout';
+import HostVans from './pages/hosts/HostVans';
+import HostVansDetail from './pages/hosts/HostVansDetail';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path='income' element={<Income />} />
             <Route path='reviews' element={<Reviews />} />
+            <Route path='vans' element={<HostVans />} />
+            <Route path='vans/:id' element={<HostVansDetail />} />
           </Route>
         </Route>
       </Routes>
