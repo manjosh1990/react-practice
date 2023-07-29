@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import "./server";
 import Home from './pages/Home';
@@ -14,10 +14,13 @@ import Reviews from './pages/hosts//Reviews';
 import HostLayout from './components/HostLayout';
 import HostVans from './pages/hosts/HostVans';
 import HostVansDetail from './pages/hosts/HostVansDetail';
+import HostVanInfo from './pages/hosts/HostVanInfo';
+import HostVanPricing from './pages/hosts/HostVanPricing';
+import HostVanPhotos from './pages/hosts/HostVanPhotos';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
@@ -29,11 +32,15 @@ function App() {
             <Route path='income' element={<Income />} />
             <Route path='reviews' element={<Reviews />} />
             <Route path='vans' element={<HostVans />} />
-            <Route path='vans/:id' element={<HostVansDetail />} />
+            <Route path='vans/:id' element={<HostVansDetail />}>
+              <Route index element={<HostVanInfo />} />
+              <Route path='pricing' element={<HostVanPricing />} />
+              <Route path='photos' element={<HostVanPhotos />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 ReactDOM.createRoot(document.getElementById('root')).render(<React.StrictMode><App />
