@@ -156,6 +156,15 @@ header a:hover {
 .van-list-container {
   padding-inline: 23px;
 }
+
+.van-list-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.van-list-filter-buttons > a {
+  margin-right: 15px;
+}
 .van-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -188,8 +197,9 @@ header a:hover {
   color: #4d4d4d;
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .van-type:hover {
-  color: #ffead0;
+  color: #FFEAD0;
 }
 
 .van-type:focus {
@@ -197,20 +207,18 @@ header a:hover {
 }
 
 .van-type.selected {
-  color: #ffead0;
-}
-.van-type.simple:hover,
-.van-type.simple.selected {
-  background-color: #e17654;
+  color: #FFEAD0;
 }
 
-.van-type.rugged:hover,
-.van-type.rugged.selected {
-  background-color: #115e59;
+.van-type.simple:hover, .van-type.simple.selected {
+  background-color: #E17654;
 }
 
-.van-type.luxury:hover,
-.van-type.luxury.selected {
+.van-type.rugged:hover, .van-type.rugged.selected {
+  background-color: #115E59;
+}
+
+.van-type.luxury:hover, .van-type.luxury.selected {
   background-color: #161616;
 }
 
@@ -227,7 +235,7 @@ header a:hover {
   color: #4d4d4d;
 }
 
-i[class*="van-type-"] {
+i[class*='van-type-'] {
   padding: 7px 14px;
 }
 .van-detail-container {
@@ -396,7 +404,7 @@ van-info p {
 }
 .host-van-detail-nav a:first-of-type {
   text-decoration: none;
-  color: #4D4D4D;
+  color: #4d4d4d;
   font-weight: 500;
   padding: 5px 15px;
   margin-left: -15px;
@@ -422,7 +430,7 @@ van-info p {
 
 .host-van-price > span {
   font-size: 16px;
-  color: #4D4D4D;
+  color: #4d4d4d;
 }
 
 .host-van-detail-image {
