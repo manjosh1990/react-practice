@@ -153,8 +153,9 @@ header a:hover {
   border-radius: 10px;
 }
 
+/*** VAN PAGES ***/
 .van-list-container {
-  padding-inline: 23px;
+  padding-inline: 23px
 }
 
 .van-list-filter-buttons {
@@ -165,27 +166,30 @@ header a:hover {
 .van-list-filter-buttons > a {
   margin-right: 15px;
 }
+
 .van-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   gap: 34px;
   margin-top: 57px;
-  padding-bottom: 20px;
 }
 
 .van-tile a {
   color: #161616;
-  text-decoration: none;
+  text-decoration: none;    
 }
+
 .van-tile img {
   max-width: 100%;
   border-radius: 5px;
 }
+
 .van-list-container button {
   margin-right: 20px;
   cursor: pointer;
 }
+
 .van-type {
   height: 34px;
   padding: 6px 26px;
@@ -193,8 +197,8 @@ header a:hover {
   font-weight: 500;
   border: none;
   border-radius: 5px;
-  background-color: #ffead0;
-  color: #4d4d4d;
+  background-color: #FFEAD0;
+  color: #4D4D4D;
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -232,22 +236,26 @@ header a:hover {
   border-radius: 5px;
   text-decoration: underline;
   background-color: transparent;
-  color: #4d4d4d;
+  color: #4D4D4D;
 }
 
 i[class*='van-type-'] {
   padding: 7px 14px;
 }
+
 .van-detail-container {
   padding: 27px;
 }
+
 .van-detail-container .back-button {
   color: black;
   text-decoration: none;
 }
 
 .van-detail-container .back-button:visited {
+  
 }
+
 .van-detail-container .back-button span {
   text-decoration: underline;
 }
@@ -257,11 +265,10 @@ i[class*='van-type-'] {
   flex-direction: column;
   color: #161616;
 }
+
 .van-detail img {
-  max-width: 75%;
   border-radius: 5px;
   margin-block: 47px;
-  padding-left: 25%;
 }
 
 .van-detail h2 {
@@ -272,20 +279,21 @@ i[class*='van-type-'] {
 .van-detail > i {
   align-self: flex-start;
 }
+
 .van-detail .van-price {
   font-size: 1.25rem;
   margin-bottom: 10px;
 }
+
 .van-detail .van-price span {
   font-weight: 700;
   font-size: 1.5rem;
 }
+
 .van-detail .link-button {
-  align-self: center;
-  background-color: #ff8c38;
+  background-color: #FF8C38;
   color: white;
   font-size: 1.125rem;
-  width: 75%;
 }
 
 .host-nav {
