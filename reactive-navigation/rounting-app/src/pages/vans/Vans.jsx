@@ -1,22 +1,41 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { getVans } from "../../api";
+
 export default function Vans() {
-  const [vansData, setVansData] = useState([]);
+  const [vans, setVans] = useState([])
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading,setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+
   const typeFilter = searchParams.get("type");
   useEffect(() => {
-    fetch("/api/vans")
-      .then(res => res.json())
-      .then(data => setVansData(data.vans))
-  }, [])
+    async function loadVans() {
+      setLoading(true)
+      try {
+          const data = await getVans()
+          console.log("fetched data: "+data);
+          setVans(data)
+      } catch (err) {
+        console.log("error :"+err)
+          setError(err)
+      } finally {
+          setLoading(false)
+      }
+    }
+    loadVans()
+}, [])
 
-  const vanTypeFilter = typeFilter ? vansData.filter(van => van.type.toLowerCase() === typeFilter) : vansData;
+  const displayedVans = typeFilter
+        ? vans.filter(van => van.type === typeFilter)
+        : vans
   console.log("typeFilter :" + typeFilter);
-  const vanElements = vanTypeFilter.map(van => {
+  const vanElements = displayedVans.map(van => {
     return (
       <div key={van.id} className="van-tile">
-        <Link to={van.id} state={{search:`?${searchParams.toString()}`,type:typeFilter}}>
+        <Link to={van.id} state={{ search: `?${searchParams.toString()}`, type: typeFilter }}>
           <img src={van.imageUrl} alt={van.name} />
           <div className="van-info">
             <h3>{van.name}</h3>
@@ -28,7 +47,7 @@ export default function Vans() {
     )
   })
   function handleFilterChange(key, value) {
-    
+
     setSearchParams(prevParams => {
       if (value === null) {
         prevParams.delete(key)
@@ -38,6 +57,12 @@ export default function Vans() {
       return prevParams
     })
   }
+  if(loading){
+    return(<h1>Loading</h1>)
+  }
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>
+}
   return (
     <div className="van-list-container">
       <h1>Explore our van options</h1>
@@ -45,8 +70,7 @@ export default function Vans() {
         <button
           onClick={() => handleFilterChange("type", "simple")}
           className={
-            `van-type simple ${
-              typeFilter === "simple" ? "selected" : ""}`
+            `van-type simple ${typeFilter === "simple" ? "selected" : ""}`
           }
         >Simple</button>
         <button
