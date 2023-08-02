@@ -16,7 +16,6 @@ export default function Vans() {
       setLoading(true)
       try {
           const data = await getVans()
-          console.log("fetched data: "+data);
           setVans(data)
       } catch (err) {
         console.log("error :"+err)
@@ -27,7 +26,6 @@ export default function Vans() {
     }
     loadVans()
 }, [])
-
   const displayedVans = typeFilter
         ? vans.filter(van => van.type === typeFilter)
         : vans
