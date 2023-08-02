@@ -10,7 +10,7 @@ import './index.css';
 import "./server";
 import Home from './pages/Home';
 import About from './pages/About';
-import Vans from './pages/vans/Vans';
+import Vans,{vansLoader} from './pages/vans/Vans';
 import VanDetail from './pages/vans/VanDetail';
 import Layout from './components/Layout';
 import Income from './pages/hosts/Income';
@@ -23,12 +23,15 @@ import HostVanInfo from './pages/hosts/HostVanInfo';
 import HostVanPricing from './pages/hosts/HostVanPricing';
 import HostVanPhotos from './pages/hosts/HostVanPhotos';
 import PageNotFound from './pages/PageNotFound';
+import Error from './components/Error';
 
 const hashRouter = createHashRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />}>
     <Route index element={<Home />} />
     <Route path='about' element={<About />} />
-    <Route path='vans' element={<Vans />} />
+    <Route path='vans' element={<Vans />} 
+    loader={vansLoader} 
+    errorElement={<Error/>}/>
     <Route path='vans/:id' element={<VanDetail />} />
     <Route path='host' element={<HostLayout />}>
       <Route index element={<Dashboard />} />
