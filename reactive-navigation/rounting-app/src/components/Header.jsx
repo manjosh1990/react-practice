@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink,Link } from "react-router-dom";
-
+import avatar from "../images/avatar-icon.png";
 export default function Header() {
   const activeStyle ={
     fontWeight:"bold",
@@ -21,6 +21,13 @@ export default function Header() {
           <NavLink to="/vans"
           style={({isActive})=>isActive?activeStyle:null}
           >Vans</NavLink>
+          <Link to="login" className="login-link">
+                    <img 
+                        src={avatar}
+                        alt="loginicon"
+                        className="login-icon"
+                    />
+                </Link>
         </nav>
       </header>
     </>

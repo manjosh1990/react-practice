@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useSearchParams, useLoaderData } from "react-router-dom";
 import { getVans } from "../../api";
 
-export function vansLoader() {
+export function loader() {
   return getVans();
 }
 
