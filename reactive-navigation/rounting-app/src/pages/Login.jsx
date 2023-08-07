@@ -1,7 +1,15 @@
 import React,{useState} from "react";
+import { useLoaderData } from "react-router-dom";
+
+export function loader({request}){
+  const url = new URL(request.url);
+  return url.searchParams.get("message");
+}
 
 export default function Login(){
   const[loginFormData,setLoginFormData] = useState({email:"",password:""});
+
+  const message = useLoaderData();
   function handleChange(e){
     const {name ,value} = e.target;
     setLoginFormData(prev=> ({
@@ -14,6 +22,7 @@ export default function Login(){
     console.log(loginFormData);
   }
   return(<div className="login-container">
+    {message && <h3 className="red">{message}</h3>}
     <h1>Sign in to your account</h1>
     <form onSubmit={handleSubmit} className="login-form">
         <input
