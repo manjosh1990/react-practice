@@ -513,6 +513,10 @@ van-info p {
     color: white;
     font-family: "Inter", sans-serif;
 }
+.login-form > button:disabled {
+  background-color: #aaaaaa;
+  cursor: not-allowed;
+}
 .red {
   color: #cc0000;
 }

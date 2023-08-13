@@ -24,13 +24,13 @@ import HostVanPricing from './pages/hosts/HostVanPricing';
 import HostVanPhotos from './pages/hosts/HostVanPhotos';
 import PageNotFound from './pages/PageNotFound';
 import Error from './components/Error';
-import Login,{loader as loginLoader} from './pages/Login';
+import Login,{loader as loginLoader, action as loginAction} from './pages/Login';
 import { requireAuth } from './utils';
 
 const hashRouter = createHashRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />}>
     <Route index element={<Home />} />
-    <Route path='login' element={<Login />} loader={loginLoader}/>
+    <Route path='login' element={<Login />} loader={loginLoader} action={loginAction}/>
     <Route path='about' element={<About />} />
     <Route path='vans'
       element={<Vans />}

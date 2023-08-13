@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { useLoaderData , useNavigate} from "react-router-dom";
+import React from "react";
+import {
+  useLoaderData,
+  redirect,
+  Form,
+  useActionData,
+  useNavigation
+} from "react-router-dom";
 import { loginUser } from "../api";
 
 export function loader({ request }) {
@@ -7,56 +13,44 @@ export function loader({ request }) {
   return url.searchParams.get("message");
 }
 
-export default function Login() {
-  const [loginFormData, setLoginFormData] = useState({ email: "", password: "" });
-  const [status, setStatus] = useState("idle");
-  const [error,setError] = useState(null);
-  const message = useLoaderData();
-  const navigate = useNavigate();
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setLoginFormData(prev => ({
-      ...prev, [name]: value
-    }))
+export async function action({ request }) {
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password")
+  try {
+    const data = await loginUser({ email, password });
+    console.log(data);
+    localStorage.setItem("loggedin", true);
+    const response = redirect("/host")
+    response.body = true;
+    return response;
+  } catch (err) {
+    return err.message;
   }
+}
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    setStatus("submitting");
-    setError(null);
-    console.log(loginFormData);
-    loginUser(loginFormData)
-      .then(
-        data => {
-          navigate("/host",{replace :true})
-        }
-      ).catch(error => {
-        console.log(error.message)
-        setError(error)
-      }).finally(() => {
-        setStatus("idle")
-      })
-  }
+export default function Login() {
+  const errorMessage = useActionData();
+  const message = useLoaderData();
+  const navigation = useNavigation();
+  const status = navigation.state;
+  console.log(status)
   return (<div className="login-container">
     {message && <h3 className="red">{message}</h3>}
-    {error && <h3 className="red">{error.message}</h3>}
+    {errorMessage && <h3 className="red">{errorMessage}</h3>}
     <h1>Sign in to your account</h1>
-    <form onSubmit={handleSubmit} className="login-form">
+    <Form method="post" className="login-form" replace>
       <input
         name="email"
         type="email"
-        onChange={handleChange}
         placeholder="Email address"
-        value={loginFormData.email}
       />
       <input
         name="password"
         type="password"
-        onChange={handleChange}
         placeholder="Password"
-        value={loginFormData.password}
       />
-      <button disabled={status === "submitting"}>{status==="submitting" ?"Logging in...": "Log in"}</button>
-    </form>
+      <button disabled={status === "submitting"}>{status === "submitting" ? "Logging in..." : "Log in"}</button>
+    </Form>
   </div>)
 }
