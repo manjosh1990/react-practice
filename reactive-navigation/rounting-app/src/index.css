@@ -473,7 +473,7 @@ van-info p {
   flex-direction: column;
   align-items: center;
   padding-inline: 27px;
-  height: 67%;
+  height: 81%;
 }
 .login-form {
   display: flex;
