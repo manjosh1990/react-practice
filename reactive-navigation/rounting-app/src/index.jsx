@@ -14,7 +14,7 @@ import Vans, { loader as vansLoader } from './pages/vans/Vans';
 import VanDetail, { loader as vanDetailLoader } from './pages/vans/VanDetail';
 import Layout from './components/Layout';
 import Income from './pages/hosts/Income';
-import Dashboard from './pages/hosts/Dashboard';
+import Dashboard, { loader as dashboardLoader } from './pages/hosts/Dashboard';
 import Reviews from './pages/hosts//Reviews';
 import HostLayout from './components/HostLayout';
 import HostVans, { loader as hostVansLoader } from './pages/hosts/HostVans';
@@ -41,13 +41,14 @@ const hashRouter = createHashRouter(createRoutesFromElements(
       path='vans/:id'
       element={<VanDetail />}
       loader={vanDetailLoader}
+      errorElement={<Error />}
     />
     <Route
       path='host' element={<HostLayout />} >
       <Route
         index
         element={<Dashboard />}
-        loader={async ({request}) => await requireAuth(request)}
+        loader={dashboardLoader}
       />
       <Route
         path='income'
@@ -60,11 +61,15 @@ const hashRouter = createHashRouter(createRoutesFromElements(
       <Route
         path='vans'
         element={<HostVans />}
-        loader={hostVansLoader} />
+        loader={hostVansLoader}
+        errorElement={<Error />}
+         />
+        
       <Route
         path='vans/:id'
         element={<HostVansDetail />}
         loader={hostVanDetailLoader}
+        errorElement={<Error />}
       >
         <Route
           index
